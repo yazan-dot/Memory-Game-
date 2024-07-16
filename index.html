@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="all.css" />
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Memory Game</title>
+  </head>
+  <body>
+    <div class="winner">
+      <div class="login-container">
+        <h1>You won</h1>
+        <!-- <img
+          src="image/334ed8109092213.5fcf8050121d5-removebg-preview.png"
+          alt=""
+        /> -->
+
+        <div class="submit">
+          <button class="btn-winner">Next</button>
+        </div>
+      </div>
+    </div>
+    <div class="loser">
+      <div class="login-container">
+        <h1>Sorry You Lost !</h1>
+        <img src="image/unnamed-removebg-preview (1).png" alt="" />
+        <div class="submit">
+          <button class="btn-loser">Agin</button>
+        </div>
+      </div>
+    </div>
+    <div class="form">
+      <div class="content">
+        <div class="user-name">
+          <label for="user">Your name :</label>
+          <input type="text" id="user" placeholder="(FirstName-LastName)" />
+          <i class="fa-solid fa-gamepad"></i>
+        </div>
+        <div class="setting-number">
+          <div class="timer-set">
+            <label for="time">Timer :</label>
+            <i class="fa-solid fa-clock"></i>
+            <input type="number" id="time" step="10" value="0" />
+          </div>
+          <div class="mistkes-set">
+            <label for="mistake">Mistake :</label>
+            <i class="fa-solid fa-filter-circle-xmark"></i>
+            <input type="number" id="mistake" step="10" value="0" />
+          </div>
+        </div>
+        <div class="level-set">
+          <label for="select">Level Chosen :</label>
+          <i class="fa-solid fa-layer-group"></i>
+          <select name="" id="select">
+            <option value="leveOne" id="leveOne">Leve One</option>
+            <option value="leveTwo" id="leveTwo">Leve Two</option>
+          </select>
+        </div>
+        <div class="submit">
+          <input type="submit" value="Start" />
+        </div>
+      </div>
+    </div>
+    <div class="header">
+      <div class="container">
+        <div class="logo">
+          <img
+            src="image/360_F_171294824_FDLwEWTzlfVr8iE0qojO0mmai44fdbIj-removebg-preview.png"
+            alt=""
+          />
+          <audio
+            id="background-music"
+            src="sounds/game-music-loop-3-144252 (1).mp3"
+            autoplay
+            loop
+          ></audio>
+
+          <button id="toggle-music">
+            <i id="toggle-icon" class="fa-solid fa-microphone-slash"></i>
+          </button>
+          <button class="LevelTwo">Level Two</button>
+        </div>
+        <div class="data">
+          <p class="name-page">Hello : <span></span></p>
+          <p class="counter">limit time: <span></span></p>
+
+          <p class="mistake-page">mistkes limit: <span></span></p>
+        </div>
+      </div>
+    </div>
+    <audio
+      src="sounds/zapsplat_cartoon_loose_grip_let_go_fall_13365.mp3"
+      id="lose"
+      preload="auto"
+    ></audio>
+    <audio
+      src="sounds/zapsplat_multimedia_game_sound_digital_retro_simple_positive_tone_complete_80635.mp3"
+      id="winer"
+      preload="auto"
+    ></audio>
+    <audio
+      preload="auto"
+      id="winner-man"
+      src="sounds/zapsplat_multimedia_game_sound_fanfare_orchestral_strings_harp_glockenspeil_finished_complete_success_109635.mp3"
+    ></audio>
+    <audio
+      src="sounds/cartoon_fail_trumpet_002.mp3"
+      preload="auto"
+      id="loser-man"
+    ></audio>
+
+    <script src="ma.js"></script>
+  </body>
+</html>
