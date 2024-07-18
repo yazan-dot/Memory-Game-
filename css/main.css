@@ -5,13 +5,33 @@
   --section-background: #f6f6f6;
   --main-duration: 0.3s;
 }
+.login-yazan {
+  background-image: url(../image/85e5e5ed3ad87c8191d5ce7ebf03399c.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.ememem img {
+  width: 150px;
+  background-color: #c9dded;
+  border-radius: 29px;
+}
+.ememem #login-form input {
+  margin-bottom: 7px;
+  height: 35px;
+  border-radius: 22px;
+  padding-left: 16px;
+}
+.ememem #login-form label {
+  color: white;
+}
 body {
   font-family: "Cinzel", serif;
 }
 .loser {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 120%;
   background-color: #3333339a;
   z-index: 20000;
   display: none;
@@ -89,7 +109,7 @@ input {
   border: none;
 }
 .form {
-  height: 100%;
+  height: 120%;
   width: 100%;
   position: absolute;
   background-color: #3333339a;
@@ -105,6 +125,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
 }
 .form .setting-number input {
   width: 150px;
@@ -141,6 +162,7 @@ input {
   background-color: #03a9f4;
   border: 1px solid #eee;
   cursor: pointer;
+  margin-top: 10px;
 }
 .form .user-name,
 .form .timer-set,
@@ -185,6 +207,7 @@ p {
 /* header */
 .header {
   background-color: var(--secondary-color);
+  padding: 25px 0px;
 }
 .header .container {
   display: flex;
@@ -210,7 +233,7 @@ p {
 /*game sett*/
 
 .game {
-  min-height: calc(100vh - 84.39px);
+  min-height: 100vh;
   background-color: var(--secondary-color);
 }
 
@@ -292,30 +315,223 @@ p {
 .loser h1 {
   color: white;
 }
+
 .header .logo {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .header #toggle-music {
-  position: absolute;
-  top: 23%;
+  color: white;
   border: none;
   background-color: transparent;
-  color: white;
-  border: 1px solid;
-  border-radius: 4px;
-  padding: 11px;
-  left: 54px;
+  cursor: pointer;
 }
 .header .logo .LevelTwo {
-  position: absolute;
-  border: none;
-  background-color: transparent;
   color: white;
-  border: 1px solid;
-  border-radius: 4px;
-  top: 20px;
-  left: 104px;
 }
 .level-set {
   display: none;
 }
+.footer {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  transform: translate(-50%, 120px);
+  left: 50%;
+}
+.footer .copyright a {
+  text-decoration: none;
+  color: white;
+}
+.footer .social a {
+  text-decoration: none;
+  color: white;
+}
+.footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer .copyright {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer .social {
+  flex-basis: 15%;
+}
+.footer .social ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+.footer .font-copy,
+.footer .sound-copy {
+  margin-left: 10px;
+}
+.footer .social li {
+  margin-left: 10px;
+}
+.footer .social i {
+  background-color: #000000bd;
+  padding: 10px;
+  font-size: 21px;
+  border-radius: 50%;
+  color: gray;
+}
+.footer .social i:first-child {
+  padding: 10px 14px;
+}
+.footer .social li:first-child:hover i {
+  color: white;
+  background-color: #1877f2;
+  transition: var(--main-duration);
+}
+.footer .social li:nth-child(2):hover i {
+  color: white;
+  background-color: #0077b5;
+  transition: var(--main-duration);
+}
+.footer .social li:nth-child(4):hover i {
+  color: white;
+  background-color: #25d366;
+  transition: var(--main-duration);
+}
+.footer .social li:nth-child(3):hover i {
+  color: white;
+  background-color: black;
+  transition: var(--main-duration);
+}
+.header .logo .select-pleas {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 12px;
+}
+.header .logo .select-pleas button:first-child {
+  position: relative;
+  top: 6px;
+  right: 113px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-color: gray;
+  border-radius: 6px;
+}
+.header .logo .select-pleas button:last-child {
+  right: 213px;
+  top: 30px;
+  position: relative;
+  z-index: 100;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background-color: gray;
+  border-radius: 6px;
+}
+.header .logo .select-pleas {
+  display: none;
+}
+.header .logo .toggle-select {
+  display: block;
+}
+
+.header .button-select {
+  color: white;
+  cursor: pointer;
+}
+
+.header .button-select button::before {
+  content: "";
+  position: absolute;
+}
+.game .card {
+  cursor: pointer;
+}
+/*phone edit */
+@media (max-width: 768px) {
+  .footer .copyright {
+    display: none;
+  }
+  .form {
+    height: 114.5%;
+  }
+  .yazan-last-update p,
+  .yazan-last-update #logout {
+    font-size: 13px;
+  }
+  .yazan-last-update #logout {
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-top: 5px;
+    font-size: 12px;
+    position: absolute;
+    top: -7px;
+    left: 195%;
+    font-size: 13px;
+  }
+  .header img {
+    display: none;
+  }
+  .header .container {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .header .data .name-page,
+  .header .data .counter {
+    margin-right: 10px;
+  }
+  .header .data {
+    flex-basis: 62%;
+  }
+  .header .logo .select-pleas {
+    position: absolute;
+  }
+  .header .logo .select-pleas button:first-child {
+    top: 13px;
+    right: 0;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    background-color: gray;
+    border-radius: 6px;
+  }
+  .header .logo .select-pleas button:last-child {
+    right: -80px;
+    top: -2px;
+    /* position: relative; */
+    z-index: 100;
+    color: white;
+    /* background-color: transparent; */
+    border: none;
+    cursor: pointer;
+    position: relative;
+    background-color: gray;
+    border-radius: 6px;
+  }
+  .login-yazan {
+    height: 117%;
+  }
+  .login-yazan img {
+    background-size: cover;
+  }
+  .game {
+    min-height: 106vh;
+  }
+  .footer {
+    left: 45%;
+  }
+  .loser {
+    height: 115.5%;
+  }
+}
+
