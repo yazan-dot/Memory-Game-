@@ -1,4 +1,137 @@
 //edit icons
+document.addEventListener("DOMContentLoaded", function () {
+  const users = {
+    khaled: { password: "senior" },
+    yazan: { password: "junior" },
+  };
+
+  const loginContainer = document.getElementById("login-container");
+  const welcomeContainer = document.getElementById("welcome-container");
+  const loginForm = document.getElementById("login-form");
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const welcomeUser = document.getElementById("welcome-user");
+  const scoreDisplay = document.getElementById("score");
+  const logoutButton = document.getElementById("logout");
+  const errorMessage = document.getElementById("error-message");
+
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    if (users[username] && users[username].password === password) {
+      localStorage.setItem("loggedInUser", username);
+      if (localStorage.getItem(`${username}_score`) === null) {
+        localStorage.setItem(`${username}_score`, 0);
+      }
+      showWelcomePage(username);
+    } else {
+      errorMessage.textContent = "Invalid username or password";
+    }
+  });
+
+  document.querySelector(".btn-winner").addEventListener("click", function () {
+    const username = localStorage.getItem("loggedInUser");
+    let score = parseInt(localStorage.getItem(`${username}_score`)) || 0;
+    score += 100;
+    localStorage.setItem(`${username}_score`, score);
+    scoreDisplay.textContent = score;
+  });
+
+  logoutButton.addEventListener("click", function () {
+    localStorage.removeItem("loggedInUser");
+    showLoginPage();
+  });
+
+  function showWelcomePage(username) {
+    loginContainer.style.display = "none";
+    welcomeContainer.style.display = "block";
+    welcomeUser.textContent = username;
+    scoreDisplay.textContent = localStorage.getItem(`${username}_score`) || 0;
+    errorMessage.textContent = "";
+  }
+
+  function showLoginPage() {
+    loginContainer.style.display = "block";
+    welcomeContainer.style.display = "none";
+    usernameInput.value = "";
+    passwordInput.value = "";
+    errorMessage.textContent = "";
+  }
+
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (loggedInUser) {
+    showWelcomePage(loggedInUser);
+  } else {
+    showLoginPage();
+  }
+});
+// Predefined users with initial scores
+// const users = {
+//   yazan: { password: "junior", score: 0 },
+//   khaled: { password: "senior", score: 0 },
+// };
+
+// // Store users in localStorage if not already present
+// Object.keys(users).forEach((username) => {
+//   if (!localStorage.getItem(username)) {
+//     localStorage.setItem(username, JSON.stringify(users[username]));
+//   }
+// });
+
+// document.getElementById("loginForm").addEventListener("submit", function (e) {
+//   e.preventDefault();
+
+//   const username = document.getElementById("username").value;
+//   const password = document.getElementById("password").value;
+
+//   const storedUser = JSON.parse(localStorage.getItem(username));
+
+//   if (storedUser && storedUser.password === password) {
+//     document.querySelector(".login-container").style.display = "none";
+//     document.getElementById("welcome-container").style.display = "block";
+//     document.getElementById("user-name").textContent = username;
+//     document.getElementById("user-score").textContent = storedUser.score;
+//     document.getElementById("score").value = storedUser.score;
+
+//     // Update score button event listener
+//     document
+//       .getElementById("update-score")
+//       .addEventListener("click", function () {
+//         const newScore = document.getElementById("score").value;
+//         storedUser.score = newScore;
+//         localStorage.setItem(username, JSON.stringify(storedUser));
+//         document.getElementById("user-score").textContent = newScore;
+//       });
+//   } else {
+//     document.getElementById("error").textContent =
+//       "Invalid username or password";
+//   }
+// });
+
+////////////////////////////////////////////////////////////////////////////////////
+let bebe = document.querySelector(".button-select");
+let hhaa = document.querySelector(`.button-select`).lastElementChild;
+bebe.addEventListener("click", function () {
+  document.querySelector(".select-pleas").classList.toggle("toggle-select");
+
+  if (hhaa.classList.contains("fa-caret-right")) {
+    hhaa.classList.remove("fa-caret-right");
+    hhaa.classList.add("fa-caret-left");
+  } else {
+    hhaa.classList.add("fa-caret-right");
+    hhaa.classList.remove("fa-caret-left");
+  }
+});
+// document
+//   .querySelector(".header .select-pleas button")
+//   .addEventListener("click", function () {
+//     document.querySelector(
+//       ".header .select-pleas button"
+//     ).style.display = `none`;
+//   });
+
 const audioElement = document.getElementById("background-music");
 const toggleButton = document.getElementById("toggle-music");
 const toggleIcon = document.getElementById("toggle-icon");
@@ -15,11 +148,11 @@ toggleButton.addEventListener("click", function () {
   }
 });
 document
-  .querySelector(".form .setting-number .timer-set input")
+  .querySelector(".form .setting-number .timer-set select")
   .addEventListener("focus", function () {
     if (
-      document.querySelector(".form .setting-number .timer-set input").value !==
-      ""
+      document.querySelector(".form .setting-number .timer-set select")
+        .value !== ""
     ) {
       document.querySelector(
         ".form .setting-number .timer-set i"
@@ -57,7 +190,7 @@ document
       "gray";
   });
 document
-  .querySelector(".form .setting-number .timer-set input")
+  .querySelector(".form .setting-number .timer-set select")
   .addEventListener("blur", function () {
     document.querySelector(".form .setting-number .timer-set i").style.color =
       "gray";
@@ -65,20 +198,43 @@ document
 document.querySelector(".form #select").addEventListener("blur", function () {
   document.querySelector(".form .level-set i").style.color = "gray";
 });
-
-//print the user data in page
-// document.querySelector(".form .timer-set input").addEventListener("input");
+//setting next of lodin
+function openAllCardsOne() {
+  let bloksOpen = document.querySelectorAll(".game .card");
+  setTimeout(function () {
+    bloksOpen.forEach(function (e) {
+      e.classList.add("clicked-two");
+    });
+  }, 0);
+  setTimeout(function () {
+    bloksOpen.forEach(function (e) {
+      e.classList.remove("clicked-two");
+    });
+  }, 2000);
+}
+function openAllCardsTwo() {
+  let bloksOpen = document.querySelectorAll(".game .card");
+  setTimeout(function () {
+    bloksOpen.forEach(function (e) {
+      e.classList.add("clicked-two");
+    });
+  }, 0);
+  setTimeout(function () {
+    bloksOpen.forEach(function (e) {
+      e.classList.remove("clicked-two");
+    });
+  }, 3000);
+}
 window.onload = function () {
   document.querySelector(".form .user-name input").focus();
 };
-let startGame = document.querySelector(`[type="submit"]`);
+let startGame = document.querySelector(`.form .content [type="submit"]`);
 let spanName = document.querySelector(".data .name-page span");
 let spanTimer = document.querySelector(".data .counter span ");
 let setCountre;
 let spanNumber = document.querySelector(".data .mistake-page span");
 let nameUser, numUser, misUser;
 
-// Add event listeners to update global variables when input values change
 document
   .querySelector(".form .user-name input")
   .addEventListener("input", function () {
@@ -86,9 +242,10 @@ document
   });
 
 document
-  .querySelector(".form .timer-set input")
+  .querySelector(".form .timer-set select")
   .addEventListener("input", function () {
-    numUser = this.value;
+    let ali = this.value;
+    numUser = parseInt(ali);
   });
 
 document
@@ -100,32 +257,30 @@ document
 startGame.addEventListener("click", function () {
   let pattren = /(\w+-\w+)/;
   let nameUser = document.querySelector(".form .user-name input").value;
-  let numUser = document.querySelector(".form .timer-set input").value;
+  let numUser = document.querySelector(".form .timer-set select").value;
   let misUser = document.querySelector(".form .mistkes-set input").value;
   let select = document.querySelector("#select").value;
   // let opOne, opTwo;
-  console.log(select);
+  console.log(numUser);
   if (!nameUser.match(pattren)) {
     popVaild();
     return false;
   } else {
     checkName(nameUser);
   }
-  if (parseInt(numUser) < 10 || parseInt(numUser) == "") {
-    pop();
-    return false;
-  } else {
-    checkTimerNumber(parseInt(numUser));
-  }
 
-  if (parseInt(misUser) < 10 || parseInt(misUser) === null) {
+  if (parseInt(misUser) < 20 || parseInt(misUser) === null) {
     pop();
     return false;
   } else {
     checkMistake(misUser);
   }
 
+  checkTimerNumber(Number(numUser));
+
   document.querySelector(".form").remove();
+  openAllCardsOne();
+
   startTimer();
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,14 +304,15 @@ function ana() {
     document.querySelector("#loser-man").play();
   }, 1000);
   document.querySelector(".btn-loser").addEventListener("click", function () {
+    openAllCardsTwo();
     blocks.map(function (ele) {
       return ele.classList.remove("clicked-two");
     });
-    clearInterval(setCountre); // Clear the existing interval
+    clearInterval(setCountre);
     document.querySelector(".mistake-page span").innerHTML = misUser;
-    spanTimer.innerHTML = `${numUser}`; // Reset the timer to the original user input
-    popLose.style.display = "none"; // Hide the loser popup
-    startTimer(); // Restart the timer
+    spanTimer.innerHTML = `${numUser}`;
+    popLose.style.display = "none";
+    startTimer();
   });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -164,13 +320,8 @@ function checkName(name) {
   spanName.innerHTML = `${name}`;
 }
 function checkTimerNumber(number) {
-  spanTimer.innerHTML = parseInt(number);
-  // let x = setInterval(function () {
-  //   spanTimer.innerHTML -= 1;
-  // }, 1000);
-  // if (spanTimer.innerHTML === 0) {
-  //   clearInterval(x);
-  // }
+  console.log(number);
+  spanTimer.innerHTML = Number(number);
 }
 function checkMistake(num) {
   spanNumber.innerHTML = `${num}`;
@@ -330,7 +481,6 @@ function shuffle(array) {
   return newArray;
 }
 
-// Filter out four cards (two pairs)
 function getFourCards(dataSet) {
   let uniqueIds = [];
   let selectedCards = [];
@@ -372,102 +522,7 @@ for (let i = 0; i < shuffledCards.length; i++) {
 
 mainDiv.appendChild(containerDiv);
 document.body.appendChild(mainDiv);
-// let dataSet = [
-//   (one = {
-//     id: 1,
-//     src: `fa-solid fa-apple-whole fa-3x`,
-//   }),
-//   (two = {
-//     id: 1,
-//     src: `fa-solid fa-apple-whole fa-3x`,
-//   }),
-//   (three = {
-//     id: 2,
-//     src: `fa-solid fa-cheese fa-3x`,
-//   }),
-//   (four = {
-//     id: 2,
-//     src: `fa-solid fa-cheese fa-3x`,
-//   }),
-//   (five = { id: 3, src: `fa-solid fa-pizza-slice fa-3x` }),
-//   (six = {
-//     id: 3,
-//     src: `fa-solid fa-pizza-slice fa-3x`,
-//   }),
-//   (seven = {
-//     id: 4,
-//     src: `fa-solid fa-burger fa-3x`,
-//   }),
-//   (eight = {
-//     id: 4,
-//     src: `fa-solid fa-burger fa-3x`,
-//   }),
-//   (nine = {
-//     id: 5,
-//     src: `fa-solid fa-egg fa-3x`,
-//   }),
-//   (ten = {
-//     id: 5,
-//     src: `fa-solid fa-egg fa-3x`,
-//   }),
-//   (elevine = {
-//     id: 6,
-//     src: `fa-solid fa-flask fa-3x`,
-//   }),
-//   (twilve = {
-//     id: 6,
-//     src: `fa-solid fa-flask fa-3x`,
-//   }),
-//   (thertine = {
-//     id: 7,
-//     src: `fa-solid fa-bone fa-3x`,
-//   }),
-//   (fourten = {
-//     id: 7,
-//     src: `fa-solid fa-bone fa-3x`,
-//   }),
-//   (fiveten = {
-//     id: 8,
-//     src: `fa-solid fa-drumstick-bite fa-3x`,
-//   }),
-//   (sixten = {
-//     id: 8,
-//     src: `fa-solid fa-drumstick-bite fa-3x`,
-//   }),
-// ];
 
-// function shuffle(array) {
-//   let newArray = [];
-//   let usedIndex = [];
-//   let i = 0;
-//   while (i < array.length) {
-//     let randomNumber = Math.floor(Math.random() * array.length);
-//     if (!usedIndex.includes(randomNumber)) {
-//       newArray.push(array[randomNumber]);
-//       usedIndex.push(randomNumber);
-//       i++;
-//     }
-//   }
-//   return newArray;
-// }
-
-// let x = shuffle(dataSet);
-// let mainDiv = document.createElement("div");
-// let containerDiv = document.createElement("div");
-// containerDiv.classList.add("container");
-// mainDiv.classList.add("game");
-// for (let i = 0; i < x.length; i++) {
-//   let mainCardOne = document.createElement("div");
-//   mainCardOne.classList.add("card");
-//   mainCardOne.setAttribute("id", x[i].id);
-//   let iconeGameOne = document.createElement("i");
-//   iconeGameOne.className = `${x[i].src}`;
-//   containerDiv.appendChild(mainCardOne);
-//   mainCardOne.appendChild(iconeGameOne);
-// }
-// mainDiv.appendChild(containerDiv);
-// document.body.appendChild(mainDiv);
-//start the armY
 let time = 1000;
 let containerBlock = document.querySelector(".game .container");
 let blocks = Array.from(containerBlock.children);
@@ -499,13 +554,10 @@ function flip(ele) {
       winnerMan.style.cssText = `display:block; transition:0.5s`;
 
       document.querySelector(".btn-winner").onclick = function () {
-        // Shuffle the dataSet array
         dataSet = shuffle(dataSet);
 
-        // Clear existing game elements
         containerDiv.innerHTML = "";
 
-        // Regenerate the game elements with the shuffled dataSet
         for (let i = 0; i < dataSet.length; i++) {
           let mainCardOne = document.createElement("div");
           mainCardOne.classList.add("card");
@@ -516,40 +568,45 @@ function flip(ele) {
           mainCardOne.appendChild(iconeGameOne);
         }
 
-        // Reset game state
         blocks = Array.from(containerDiv.children);
         blocks.map(function (ele) {
           return ele.classList.remove("clicked-two");
         });
+        openAllCardsTwo();
+
         document.querySelector(".mistake-page span").innerHTML = misUser;
         spanTimer.innerHTML = `${numUser}`;
-        winnerMan.style.display = "none"; // Hide the winner popup
+        winnerMan.style.display = "none";
 
-        // Reattach event listeners to new blocks
         blocks.forEach(function (e) {
           e.addEventListener("click", function () {
             flip(e);
           });
         });
+        // let score = parseInt(localStorage.getItem("score")) || 0;
+        // score += 100;
+        // localStorage.setItem("score", score);
+        // scoreDisplay.innerHTML = `${score}`;
 
-        // Clear existing interval before starting a new one
-        // Restart the timer
         startTimerWinner();
       };
     }
     lastCheck(z[0], z[1]);
   }
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function startTimerWinner() {
-  spanTimer.innerHTML = numUser;
+  spanTimer.innerHTML = parseInt(numUser);
   setCountre = setInterval(setTimeWinner, 1000);
 }
 
 function setTimeWinner() {
   spanTimer.innerHTML = parseInt(spanTimer.innerHTML) - 1;
   if (spanTimer.innerHTML === "0") {
+    document.querySelector("#loser-man"); ///اخر تحديث
+    setTimeout(function () {
+      document.querySelector("#loser-man").play();
+    }, 1000);
     losePop();
     clearInterval(setCountre);
   }
@@ -560,14 +617,16 @@ function losePop() {
   popLose.style.cssText = `display:block; transition:0.5s`;
 
   document.querySelector(".btn-loser").addEventListener("click", function () {
+    openAllCardsTwo();
+
     blocks.map(function (ele) {
       return ele.classList.remove("clicked-two");
     });
-    clearInterval(setCountre); // Clear the existing interval
+    clearInterval(setCountre);
     document.querySelector(".mistake-page span").innerHTML = misUser;
-    spanTimer.innerHTML = `${numUser}`; // Reset the timer to the original user input
-    popLose.style.display = "none"; // Hide the loser popup
-    startTimerWinner(); // Restart the timer
+    spanTimer.innerHTML = `${numUser}`;
+    popLose.style.display = "none";
+    startTimerWinner();
   });
 }
 
@@ -594,20 +653,18 @@ function lastCheck(oneB, twoB) {
       setTimeout(function () {
         document.querySelector("#loser-man").play();
       }, 1000);
-      // Display the popup
       let popLose = document.querySelector(".loser");
       popLose.style.cssText = `display:block; transition:0.5s`;
 
-      // Add event listener to the button inside the popup
       document
         .querySelector(".btn-loser")
         .addEventListener("click", function () {
           blocks.map(function (ele) {
             return ele.classList.remove("clicked-two");
           });
-          clearInterval(setCountre);
+          openAllCardsOne(), clearInterval(setCountre);
           mistakeNumber.innerHTML = misUser;
-          spanTimer.innerHTML = numUser;
+          spanTimer.innerHTML = parseInt(numUser);
           popLose.style.display = "none";
           startTimer();
         });
@@ -621,16 +678,107 @@ function lastCheck(oneB, twoB) {
   }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let yazan = document.querySelector(".LevelTwo");
+let timerInterval;
 
-document.querySelector(".LevelTwo").onclick = function () {
-  // Shuffle the dataSet array
-  dataSet = shuffle(dataSet);
+// Assuming dataSet is defined globally as you described
 
-  // Clear existing game elements
+document.querySelector(".LevelOne").onclick = function () {
+  console.log("Clicked Level One");
+
+  // Shuffle dataSet array
+  dataSet = shuff(dataSet);
+
+  // Clear previous content in containerDiv
   containerDiv.innerHTML = "";
 
-  // Regenerate the game elements with the shuffled dataSet
+  // Select 4 unique IDs from shuffled dataSet
+  let selectedIds = [];
+  let selectedCards = [];
+
+  for (let i = 0; i < dataSet.length; i++) {
+    if (selectedIds.length === 2) break; // We only need 4 cards (2 pairs)
+
+    if (!selectedIds.includes(dataSet[i].id)) {
+      selectedIds.push(dataSet[i].id);
+      selectedCards.push(dataSet[i]);
+    }
+  }
+
+  // Duplicate each selected card to create pairs
+  let displayedCards = [];
+  selectedCards.forEach((card) => {
+    displayedCards.push(card, { id: card.id, src: card.src }); // Duplicate each card
+  });
+
+  // Shuffle displayed cards for randomness
+  displayedCards = shuff(displayedCards);
+
+  // Render displayedCards
+  displayedCards.forEach((card) => {
+    let mainCard = document.createElement("div");
+    mainCard.classList.add("card");
+    mainCard.setAttribute("id", card.id);
+
+    let icon = document.createElement("i");
+    icon.className = `fa ${card.src}`;
+
+    mainCard.appendChild(icon);
+    containerDiv.appendChild(mainCard);
+  });
+  openAllCardsOne();
+  // Reset game state
+  blocks = Array.from(containerDiv.children);
+  blocks.forEach(function (ele) {
+    ele.classList.remove("clicked-two");
+  });
+
+  // Update UI elements (mistake count and timer)
+  document.querySelector(".mistake-page span").innerHTML = misUser;
+  spanTimer.innerHTML = `${numUser}`;
+
+  // Add click event listeners to each card
+  blocks.forEach(function (e) {
+    e.addEventListener("click", function () {
+      flip(e);
+    });
+  });
+
+  // Clear any existing timer interval and start new timer
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+  yaznaTimer();
+};
+
+// Function to shuffle array (Fisher-Yates shuffle algorithm)
+function shuff(array) {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+document.querySelector(".LevelTwo").onclick = function () {
+  dataSet = shuffle(dataSet);
+
+  containerDiv.innerHTML = "";
+
   for (let i = 0; i < dataSet.length; i++) {
     let mainCardOne = document.createElement("div");
     mainCardOne.classList.add("card");
@@ -640,8 +788,7 @@ document.querySelector(".LevelTwo").onclick = function () {
     containerDiv.appendChild(mainCardOne);
     mainCardOne.appendChild(iconeGameOne);
   }
-
-  // Reset game state
+  openAllCardsTwo();
   blocks = Array.from(containerDiv.children);
   blocks.map(function (ele) {
     return ele.classList.remove("clicked-two");
@@ -649,14 +796,29 @@ document.querySelector(".LevelTwo").onclick = function () {
   document.querySelector(".mistake-page span").innerHTML = misUser;
   spanTimer.innerHTML = `${numUser}`;
 
-  // Reattach event listeners to new blocks
   blocks.forEach(function (e) {
     e.addEventListener("click", function () {
       flip(e);
     });
   });
 
-  // Clear existing interval before starting a new one
-  // Restart the timer
-  startTimerWinner();
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+
+  yaznaTimer();
 };
+
+function yaznaTimer() {
+  let timeRemaining = parseInt(spanTimer.innerHTML);
+
+  timerInterval = setInterval(function () {
+    if (timeRemaining > 0) {
+      timeRemaining--;
+      spanTimer.innerHTML = timeRemaining;
+    } else {
+      clearInterval(timerInterval);
+    }
+  }, 1000);
+}
+
