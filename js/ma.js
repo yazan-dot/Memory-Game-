@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const users = {
     KHALED: { password: "SENIOR" },
     YAZAN: { password: "JUNIOR" },
-    SHALALE :{password:"SHALALE"}
+    SHALALE: {password:"SHALALE"},
   };
-
+   
   const loginContainer = document.getElementById("login-container");
   const welcomeContainer = document.getElementById("welcome-container");
   const loginForm = document.getElementById("login-form");
