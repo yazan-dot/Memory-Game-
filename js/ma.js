@@ -1,8 +1,9 @@
 //edit icons
 document.addEventListener("DOMContentLoaded", function () {
   const users = {
-    khaled: { password: "senior" },
-    yazan: { password: "junior" },
+    KHALED: { password: "SENIOR" },
+    YAZAN: { password: "JUNIOR" },
+    SHALALE :{password:"SHALALE"}
   };
 
   const loginContainer = document.getElementById("login-container");
