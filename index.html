@@ -15,6 +15,109 @@
     <title>Memory Game</title>
   </head>
   <body>
+  <body>
+    <div
+      class="login-yazan"
+      id="login-container"
+      style="z-index: 4000; position: absolute"
+    >
+      <div
+        class="ememem"
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 5000;
+          border: 1px solid white;
+          border-radius: 5px;
+          padding: 50px;
+        "
+      >
+        <div class="image-login">
+          <img
+            src="image/360_F_171294824_FDLwEWTzlfVr8iE0qojO0mmai44fdbIj-removebg-preview.png"
+            alt=""
+          />
+        </div>
+
+        <form id="login-form" style="display: flex; flex-direction: column">
+          <div
+            id="error-message"
+            class="error"
+            style="
+              color: white;
+              font-size: 11px;
+              position: relative;
+              bottom: -190px;
+              text-align: center;
+              font-weight: bold;
+            "
+          ></div>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+          <button
+            style="
+              color: black;
+              background-color: #c9dded;
+              border-radius: 20px;
+              margin-top: 4px;
+              padding: 7px 10px;
+            "
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="yazan-last-update"
+      id="welcome-container"
+      style="
+        position: absolute;
+        z-index: 3000;
+        display: block;
+        left: 15px;
+        top: 10px;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+      "
+    >
+      <h2 style="display: none">Welcome <span id="welcome-user"></span></h2>
+      <button id="add-score" style="display: none">Add 100</button>
+      <p>Your current score is: <span id="score"></span></p>
+      <button
+        id="logout"
+        style="
+          background-color: transparent;
+          border: none;
+          color: white;
+          margin-top: 5px;
+        "
+      >
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </div>
+    <!-- <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p id="error" class="error"></p>
+    </div> -->
+
     <div class="winner">
       <div class="login-container">
         <h1>You won</h1>
@@ -22,16 +125,15 @@
           src="image/334ed8109092213.5fcf8050121d5-removebg-preview.png"
           alt=""
         /> -->
-
         <div class="submit">
-          <button class="btn-winner">Next</button>
+          <button id="add-score" class="btn-winner">Next</button>
         </div>
       </div>
     </div>
     <div class="loser">
       <div class="login-container">
         <h1>Sorry You Lost !</h1>
-        <img src="image/unnamed-removebg-preview (1).png" alt="" />
+        <!-- <img src="image/unnamed-removebg-preview (1).png" alt="" /> -->
         <div class="submit">
           <button class="btn-loser">Agin</button>
         </div>
@@ -45,18 +147,34 @@
           <i class="fa-solid fa-gamepad"></i>
         </div>
         <div class="setting-number">
-          <div class="timer-set">
+          <!-- <div class="timer-set">
             <label for="time">Timer :</label>
             <i class="fa-solid fa-clock"></i>
             <input type="number" id="time" step="10" value="0" />
+          </div> -->
+          <div class="timer-set">
+            <label for="time">Timer :</label>
+            <i class="fa-solid fa-clock"></i>
+            <!-- <input type="number" id="time" step="10" value="0" /> -->
+            <select name="" id="" style="padding-left: 79px">
+              <option value="30">30</option>
+              <option value="60">60</option>
+              <option value="120">120</option>
+            </select>
           </div>
           <div class="mistkes-set">
             <label for="mistake">Mistake :</label>
             <i class="fa-solid fa-filter-circle-xmark"></i>
-            <input type="number" id="mistake" step="10" value="0" />
+            <input
+              type="number"
+              id="mistake"
+              step="10"
+              value="0"
+              style="width: 100%; padding-left: 79px"
+            />
           </div>
         </div>
-        <div class="level-set">
+        <div class="level-set" style="width: 50px">
           <label for="select">Level Chosen :</label>
           <i class="fa-solid fa-layer-group"></i>
           <select name="" id="select">
@@ -78,7 +196,7 @@
           />
           <audio
             id="background-music"
-            src="sounds/game-music-loop-3-144252 (1).mp3"
+            src="sounds/مجوز ظالم ما ترحم حبيبك - حفلة الدروبي.mp3"
             autoplay
             loop
           ></audio>
@@ -86,7 +204,13 @@
           <button id="toggle-music">
             <i id="toggle-icon" class="fa-solid fa-microphone-slash"></i>
           </button>
-          <button class="LevelTwo">Level Two</button>
+          <div class="button-select">
+            Select Level <i class="fa-solid fa-caret-right"></i>
+          </div>
+          <div class="select-pleas">
+            <button class="LevelOne">Level one</button>
+            <button class="LevelTwo">Level Two</button>
+          </div>
         </div>
         <div class="data">
           <p class="name-page">Hello : <span></span></p>
@@ -116,6 +240,57 @@
       preload="auto"
       id="loser-man"
     ></audio>
+    <div class="footer">
+      <div class="container">
+        <div class="copyright">
+          <div class="my-name">
+            <i class="fa-regular fa-copyright"></i> By
+            <a
+              style="color: rgb(3, 168, 244)"
+              href="https://github.com/yazan-dot"
+              target="_blank"
+              >yazan-dot</a
+            >
+            All Rights Reserved. |
+          </div>
+          <div class="font-copy">
+            Icons By
+            <a
+              style="color: rgb(3, 168, 244)"
+              href="https://fontawesome.com/"
+              target="_blank"
+              >fontawesome</a
+            >
+            |
+          </div>
+          <div class="sound-copy">
+            Sounds from
+            <a
+              style="color: rgb(3, 168, 244)"
+              href="https://www.zapsplat.com/"
+              target="_blank"
+              >zapsplat</a
+            >
+          </div>
+        </div>
+        <div class="social">
+          <ul>
+            <li>
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-github"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <script src="js/ma.js"></script>
   </body>
